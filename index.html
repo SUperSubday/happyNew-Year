@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A New Year Surprise, My Love</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Noto+Sans+Devanagari:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Playfair Display', 'Noto Sans Devanagari', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #f5e7f0, #d9e4f5);
+      color: #333;
+      overflow-x: hidden;
+      animation: gradientShift 15s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      padding: 20px;
+    }
+
+    .gift-box {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 80%;
+      max-width: 600px;
+      height: 60%;
+      border: 2px dashed #ff69b4;
+      background: rgba(255, 255, 255, 0.3);
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+      animation: openGift 3s forwards;
+    }
+
+    @keyframes openGift {
+      0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+      100% { transform: translate(-50%, -50%) scale(1.5); opacity: 0; }
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      color: #c71585;
+      text-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
+      opacity: 0;
+      animation: glow 3s ease-in-out infinite, fadeIn 2s 2s forwards;
+    }
+
+    .hero .devanagari {
+      font-family: 'Noto Sans Devanagari', sans-serif;
+      font-size: 3rem;
+      margin-top: 10px;
+      opacity: 0;
+      animation: fadeIn 2s 2.5s forwards;
+    }
+
+    .hero p {
+      font-size: 1.5rem;
+      font-style: italic;
+      color: #555;
+      margin-top: 20px;
+      opacity: 0;
+      animation: slideUp 2s 3s forwards;
+    }
+
+    /* Petals, Stars, Flowers */
+    .petal, .star, .flower {
+      position: absolute;
+      animation: fall linear infinite;
+    }
+
+    .petal {
+      background: linear-gradient(45deg, #ff69b4, #ffffff);
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .star {
+      background: rgba(255, 255, 255, 0.8);
+      width: 5px;
+      height: 5px;
+      animation: twinkle 2s infinite;
+    }
+
+    .flower {
+      width: 20px;
+      height: 20px;
+      background: radial-gradient(circle, #ff69b4 20%, transparent 70%);
+      opacity: 0;
+      animation: bloom 4s ease-in-out infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-100vh); opacity: 1; }
+      100% { transform: translateY(100vh); opacity: 0; }
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 1; }
+    }
+
+    @keyframes bloom {
+      0% { transform: scale(0); opacity: 0; }
+      50% { transform: scale(1.5); opacity: 0.7; }
+      100% { transform: scale(0); opacity: 0; }
+    }
+
+    @keyframes glow {
+      0%, 100% { text-shadow: 0 0 10px rgba(255, 105, 180, 0.5); }
+      50% { text-shadow: 0 0 20px rgba(255, 105, 180, 0.8); }
+    }
+
+    @keyframes slideUp {
+      0% { transform: translateY(20px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    /* Romantic Section */
+    .romantic {
+      padding: 50px 20px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.8);
+      margin: 20px;
+      border-radius: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .romantic h2 {
+      font-size: 2rem;
+      color: #c71585;
+      margin-bottom: 20px;
+      text-shadow: 0 0 5px rgba(255, 105, 180, 0.3);
+    }
+
+    .love-note {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto;
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 2px solid #c71585;
+      animation: typewriter 6s steps(60) 1s 1 normal both,
+                blink 0.75s step-end infinite;
+    }
+
+    .love-note.devanagari {
+      font-family: 'Noto Sans Devanagari', sans-serif;
+      font-size: 1.3rem;
+    }
+
+    .heart {
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background: #ff69b4;
+      transform: rotate(45deg);
+      opacity: 0;
+      animation: floatHeart 3s ease-in forwards;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      width: 15px;
+      height: 15px;
+      background: #ff69b4;
+      border-radius: 50%;
+      position: absolute;
+    }
+
+    .heart::before {
+      top: -7.5px;
+      left: 0;
+    }
+
+    .heart::after {
+      top: 0;
+      left: -7.5px;
+    }
+
+    @keyframes floatHeart {
+      0% { transform: translateY(0) rotate(45deg); opacity: 0; }
+      50% { opacity: 0.5; }
+      100% { transform: translateY(-100px) rotate(45deg); opacity: 0; }
+    }
+
+    @keyframes typewriter {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink {
+      from, to { border-color: transparent; }
+      50% { border-color: #c71585; }
+    }
+
+    /* Final Message */
+    .final {
+      padding: 50px 20px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.8);
+      margin: 20px;
+      border-radius: 10px;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      animation: fadeIn 2s 1s forwards;
+    }
+
+    .final h2 {
+      font-size: 2rem;
+      color: #c71585;
+      margin-bottom: 20px;
+    }
+
+    .final p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto 20px;
+    }
+
+    .final .devanagari {
+      font-family: 'Noto Sans Devanagari', sans-serif;
+      font-size: 1.3rem;
+    }
+
+    .beating-heart {
+      width: 50px;
+      height: 50px;
+      background: #ff69b4;
+      transform: rotate(45deg);
+      margin: 20px auto;
+      animation: beat 1s infinite;
+      position: relative;
+    }
+
+    .beating-heart::before,
+    .beating-heart::after {
+      content: '';
+      width: 50px;
+      height: 50px;
+      background: #ff69b4;
+      border-radius: 50%;
+      position: absolute;
+    }
+
+    .beating-heart::before {
+      top: -25px;
+      left: 0;
+    }
+
+    .beating-heart::after {
+      top: 0;
+      left: -25px;
+    }
+
+    @keyframes beat {
+      0%, 100% { transform: rotate(45deg) scale(1); }
+      50% { transform: rotate(45deg) scale(1.2); }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.5rem; }
+      .hero .devanagari { font-size: 2rem; }
+      .hero p { font-size: 1.2rem; }
+      .romantic h2, .final h2 { font-size: 1.5rem; }
+      .love-note, .final p { font-size: 1rem; }
+      .gift-box { width: 90%; height: 70%; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="gift-box"></div>
+    <h1>Happy New Year 2082, My Love 💫</h1>
+    <h1 class="devanagari">नयाँ वर्ष को शुभकमाना मायालु &#10084;</h1>
+    <p>A fresh year begins, but my love for you is timeless.</p>
+  </section>
+
+  <!-- Romantic Section -->
+  <section class="romantic">
+    <h2>A Love Note for You</h2>
+    <p class="love-note">Another year, another chance to love you more deeply. You make every moment magical. I’m so lucky to call you mine. I love you — endlessly, truly, hopelessly.</p>
+    <p class="love-note devanagari">नयाँ वर्ष, तिमीलाई अझ गहिरो माया गर्ने अर्को अवसर।❤️</p>
+  </section>
+
+  <!-- Final Message -->
+  <section class="final">
+    <h2>मयालुलाई कविता</h2>
+    <p class="devanagari">
+    <pre>
+      नयाँ बिहान, नयाँ सपना,
+      तिमी बिना अधुरो लाग्छ यो जीवनको रचना।
+      साथ तिम्रो पाइरहूँ सधैँ, यही मेरो चाहना,
+      तिमी नै त हौ, मेरो मुटुको मधुर भावना।
+      
+      नयाँ वर्षमा, तिमीलाई अझ माया गरूँ,
+      तिम्रो हाँसोमा सारा संसार हराऊँ।
+      तिमी हुँदा, सब थोक पूर्ण लाग्छ,
+      तिमी नभए जीवन अलपत्र लाग्छ।
+      
+      यो वर्ष हामी सँगै रमाऊँ,
+      पुर्ख्यौली प्रेमको कथा बनाऊँ।
+      हात समाइ हर सपना पुरा गरौँ,
+      तिमी र म — सधैंसधैं  साथ रहौँ ।❤️
+    </pre>
+</p>
+    <p>No matter what year it is, my resolution is always you.</p>
+    <div class="beating-heart"></div>
+  </section>
+
+  <script>
+    // Petals, Stars, and Flowers
+    const hero = document.querySelector('.hero');
+    const romantic = document.querySelector('.romantic');
+    const final = document.querySelector('.final');
+
+    function createElements(section, count, type) {
+      for (let i = 0; i < count; i++) {
+        const element = document.createElement('div');
+        element.classList.add(type);
+        element.style.left = Math.random() * 100 + '%';
+        element.style.animationDuration = Math.random() * 5 + 5 + 's';
+        element.style.animationDelay = Math.random() * 5 + 's';
+        if (type === 'flower') {
+          element.style.top = Math.random() * 100 + '%';
+          element.style.animationDuration = Math.random() * 3 + 3 + 's';
+        }
+        section.appendChild(element);
+      }
+    }
+
+    createElements(hero, 20, 'petal');
+    createElements(hero, 15, 'star');
+    createElements(hero, 5, 'flower');
+    createElements(romantic, 5, 'flower');
+    createElements(final, 5, 'flower');
+
+    // Floating Hearts
+    function createHearts(section, count) {
+      for (let i = 0; i < count; i++) {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.style.left = Math.random() * 100 + '%';
+        heart.style.animationDelay = Math.random() * 5 + 's';
+        section.appendChild(heart);
+      }
+    }
+
+    createHearts(romantic, 8);
+    createHearts(final, 8);
+  </script>
+</body>
+</html>
